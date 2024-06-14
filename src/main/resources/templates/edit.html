@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Registration</title>
+<!-- Include Bootstrap CSS or your custom CSS here -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Add your custom CSS here if needed -->
+<style>
+body{
+    
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;    
+}
+</style>
+</head>
+
+<body>
+	<header class="bg-light">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    InnoBytes
+                </a>
+            
+            <div class="d-flex">
+        <!-- User profile button -->
+        
+        <a href="/profile" class="btn btn-primary me-2">Profile</a>
+        <!-- Logout button -->
+        <form action="/logout" method="get">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+    </div>
+        </nav>
+    </header>
+
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h3>Book Update</h3>
+					</div>
+					<div class="card-body">
+						<form th:action="@{/book_update}"
+							method="post" enctype="multipart/form-data">
+							<input type="hidden" id="employeeId"
+								th:value="${user.id}">
+
+
+							<!-- Name -->
+							<div class="mb-3">
+								<label for="id" class="form-label">Book Name:</label> <input
+									type="text" class="form-control" name="id"
+									th:value="${user.id}" required >
+							</div>
+							<div class="mb-3">
+								<label for="book_name" class="form-label">Book Name:</label> <input
+									type="text" class="form-control" name="book_name"
+									th:value="${user.book_name}" required>
+							</div>
+
+							<!-- Email -->
+							<div class="mb-3">
+								<label for="author_name" class="form-label">Author Name:</label> <input
+									type="text" class="form-control" name="author_name"
+									th:value="${user.author_name}" required>
+							</div>
+
+							<!-- Username -->
+							<div class="mb-3">
+								<label for="cost" class="form-label">Cost:</label> <input
+									type="text" class="form-control" name="cost"
+									th:value="${user.cost}" required>
+							</div>
+							<div class="mb-3">
+								<label for="qty" class="form-label">Qty:</label> <input
+									type="text" class="form-control" name="qty"
+									th:value="${user.qty}" required>
+							</div>
+
+							<!-- Password -->
+							
+							<input type="submit" class="btn btn-primary" value="Update">
+							<a href="/books_list" class="btn btn-warning mx-3">Back to Employee
+								List</a>
+						</form>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+		</body>
+
+</html>

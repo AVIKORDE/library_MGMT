@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href= 
+"https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" /> 
+  
+     <!-- jQuery library file -->
+     <script type="text/javascript" 
+     src="https://code.jquery.com/jquery-3.5.1.js"> 
+     </script> 
+  
+      <!-- Datatable plugin JS library file -->
+     <script type="text/javascript" src= 
+"https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"> 
+     </script> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body{
+    
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;    
+}
+</style>
+</head>
+<body>
+  
+<header class="bg-light">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                     InnoBytes
+                </a>
+            
+            <div class="d-flex">
+        <!-- User profile button -->
+        <a href="/books_list" class="btn btn-primary me-2">Books List</a>
+        <a href="/books_registration" class="btn btn-primary me-2">Books Registration</a>
+        <a href="/order_list" class="btn btn-primary me-2">OrderList</a>
+        <a href="/profile" class="btn btn-primary me-2">Profile</a>
+        <!-- Logout button -->
+        <form action="/logout" method="get">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+    </div>
+        </nav>
+    </header>
+	
+    <div class="container mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
+        <center><h2 class="display-6">Book List</h2></center>
+        <table id="tableID" class="table table-striped my-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Book Name</th>
+                    <th>Author name</th>
+                    <th>Cost</th>
+                    <th>Qty</th>
+                    <th>Action</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${bookslist}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.book_name}"></td>
+                    <td th:text="${employee.author_name}"></td>
+                    <td th:text="${employee.cost}"></td>
+                    <td th:text="${employee.qty}"></td>
+                  	<td><a data-toggle="modal" data-target="exampleModal" class="btn btn-primary" th:href="@{/order/{id}(id=${employee.id})}">Order</a>
+                  	
+                    </tr>
+            </tbody>
+        
+        </table>
+    <center><h1class="display-3">fine per day after 5 days=50rs.</h1></center>
+    </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+    
+    $(document).ready(function() { 
+        $('#tableID').DataTable({ }); 
+    }); 
+    </script>
+</body>
+</html>
